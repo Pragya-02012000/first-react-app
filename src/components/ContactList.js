@@ -1,15 +1,12 @@
+import { Button } from 'react-bootstrap';
+import { Trash } from 'react-bootstrap-icons';
 import Table from 'react-bootstrap/Table';
 
-function ContactList({data}) {
-    // const data = [{
-    //     name: 'Anil',
-    //     email: 'u@u.com'
-    // },
-
-    // {
-    //     name: 'Pragya',
-    //     email: 'u@a.com'
-    // }]
+function ContactList({ data, setFormData }) {
+    const handleDelete = (index) => {
+        const res = data.filter((item, i) => i != index)
+        setFormData(res)
+    }
     return (
         <Table striped bordered hover >
             <thead>
@@ -17,6 +14,8 @@ function ContactList({data}) {
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +25,7 @@ function ContactList({data}) {
                             <td>{index + 1}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
+                            <td><Button onClick={() => handleDelete(index)}><Trash /></Button></td>
                         </tr>
                     ))
                 }
