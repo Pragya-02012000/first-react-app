@@ -1,11 +1,15 @@
 import { Button } from 'react-bootstrap';
-import { Trash } from 'react-bootstrap-icons';
+import { Pencil, Trash } from 'react-bootstrap-icons';
 import Table from 'react-bootstrap/Table';
 
-function ContactList({ data, setFormData }) {
+function ContactList({ data, setFormData, setIsEdit,setSelectedRow }) {
     const handleDelete = (index) => {
-        const res = data.filter((item, i) => i != index)
+        const res = data.filter((item, i) => i !== index)
         setFormData(res)
+    }
+    const handleEdit =(item,index)=>{
+        setSelectedRow(item,index)
+        setIsEdit(true)
     }
     return (
         <Table striped bordered hover >
@@ -25,7 +29,10 @@ function ContactList({ data, setFormData }) {
                             <td>{index + 1}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
-                            <td><Button onClick={() => handleDelete(index)}><Trash /></Button></td>
+                            <td>
+                                <Button onClick={() => handleEdit(item,index)}><Pencil /></Button>
+                                <Button style={{ marginLeft: 2 }} onClick={() => handleDelete(index)}><Trash /></Button>
+                            </td>
                         </tr>
                     ))
                 }
