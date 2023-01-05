@@ -31,7 +31,7 @@ function ContactList({ data, setFormData, setIsEdit,setSelectedRow }) {
                             <td>{item.email}</td>
                             <td>
                                 <Button onClick={() => handleEdit(item,index)}><Pencil /></Button>
-                                <Button style={{ marginLeft: 2 }} onClick={() => handleDelete(index)}><Trash /></Button>
+                                <Button variant="secondary" style={{ marginLeft: 2 }} onClick={() => handleDelete(index)}><Trash /></Button>
                             </td>
                         </tr>
                     ))
