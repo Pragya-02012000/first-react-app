@@ -1,33 +1,25 @@
-import './App.css';
-import Header from "./Header";
-import AddContact from "./AddContact";
-import CustomButton from './Button';
-import CustomProgress from './CustomProgress';
+import * as React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import YoutubeApp from "./YoutubeApp";
 
-function App() {
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#1976d2",
+    },
+  },
+});
+
+export default function App() {
   return (
-    <div>
-      <Header />
-      <AddContact />
-      <div className='d-flex mb-4'>
-        <CustomButton
-          label={"First"}
-          variant={"primary"}
-        />
-        <CustomButton
-          label={"Second"}
-          variant={"success"}
-        />
-        <CustomButton
-          label={"Third"}
-          variant={"warning"}
-        />
-        <CustomButton />
-      </div>
-      <CustomProgress/>
-
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <YoutubeApp />
+    </ThemeProvider>
   );
 }
-
-export default App;
