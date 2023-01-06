@@ -23,6 +23,11 @@ import History from "@mui/icons-material/History";
 import Subscriptions from "@mui/icons-material/Subscriptions";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import { Routes, Route } from "react-router-dom";
+import AddHome from "../pages/AddHome";
+
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -130,7 +135,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const Youtube = () => {
+const YoutubeApp = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -138,18 +143,25 @@ const Youtube = () => {
     {
       label: "Home",
       icon: <Home />,
+      path: "/home",
     },
     {
       label: "History",
       icon: <History />,
+      path: "/history",
+
     },
     {
       label: "Subscriptions",
       icon: <Subscriptions />,
+      path: "/subscriptions",
+
     },
     {
       label: "Liked Vidoes",
       icon: <ThumbUpOffAltIcon />,
+      path: "/liked",
+
     },
   ];
 
@@ -161,8 +173,12 @@ const Youtube = () => {
     setOpen(false);
   };
 
+  const handlePath =(path) =>{
+    console.log(path);
+  };
+
   return (
-    <Box>
+    <Box sx={{ display: 'flex' }}>
       <AppBar color="primary" position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -221,7 +237,7 @@ const Youtube = () => {
           </Box>
         </Toolbar>
       </AppBar>
-
+      
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -241,6 +257,7 @@ const Youtube = () => {
                   borderRadius: 2,
                 }}
                 dense
+                // onClick={()=>handlePath(item.path)}
               >
                 <ListItemIcon
                   sx={{
@@ -260,8 +277,15 @@ const Youtube = () => {
           ))}
         </List>
       </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
+        <Routes>
+          <Route path="/" element={<YoutubeApp />} />
+          <Route path="/home" element={<AddHome />} />
+        </Routes>
+      </Box>
     </Box>
   );
 };
 
-export default Youtube;
+export default YoutubeApp;

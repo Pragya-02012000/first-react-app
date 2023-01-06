@@ -22,10 +22,7 @@ export default function App() {
   return (
     <Router>
       <ThemeProvider theme={darkTheme}>
-        <Routes>
-          <Route path="/" element={<YoutubeApp />} />
-          <Route path="/Home" element={<AddHome />} />
-        </Routes>
+        <YoutubeApp/>
       </ThemeProvider>
     </Router>
   );
